@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:junnah/Quraan.dart';
-import 'package:junnah/Surrah.dart';
-import 'package:junnah/test.dart';
+import 'package:provider/provider.dart';
+import 'QuraanPage.dart';
+import 'models/quraan_model.dart';
+
 
 
 void main() {
@@ -14,15 +15,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+
+    return ChangeNotifierProvider(create: (context){
+      return Quraan();
+    },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const QuraanPage(),
+        routes: {
+          "quraan":(context)=>QuraanPage(),
+        },
       ),
-      home: const QuraanPage(),
-      routes: {
-        "quraan":(context)=>QuraanPage(),
-      },
     );
   }
 }
